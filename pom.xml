@@ -31,7 +31,7 @@
 				<extensions>true</extensions>
 				<configuration>
 					<cloudHubDeployment>
-						<muleVersion>4.3.0-20210609</muleVersion>
+						<muleVersion>4.3.0</muleVersion>
 						<username>rohan97</username>	
 						<password>19ikEBRo</password>
 						<applicationName>worldtimezone-service</applicationName>
