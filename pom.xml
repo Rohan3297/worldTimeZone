@@ -34,8 +34,9 @@
 						<muleVersion>4.3.0</muleVersion>
 						<username>rohan97</username>	
 						<password>19ikEBRo</password>
-						<applicationName>worldtimezone-service1</applicationName>
+						<applicationName>worldtimezone-app</applicationName>
 						<environment>Sandbox</environment>
+						<region>us-east-2</region>
 						<workers>1</workers>
 						<workerType>Micro</workerType>
 					</cloudHubDeployment>
