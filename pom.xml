@@ -9,6 +9,8 @@
 
 	<name>world-time</name>
 
+
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -32,10 +34,11 @@
 				<extensions>true</extensions>
 				<configuration>
 					<cloudHubDeployment>
+						<uri>https://anypoint.mulesoft.com</uri>
 						<username>rohan97</username>
 						<environment>Sandbox</environment>
 						<workers>1</workers>
-						<workerType>MICRO</workerType>
+						<workerType>Micro</workerType>
 						<applicationName>Time-Zone-app</applicationName>
 						<password>19ikEBRo</password>
 						<muleVersion>4.3.0</muleVersion>
@@ -58,8 +61,9 @@
 					</execution>
 				</executions>
 				<configuration>
+					<skipTests>true</skipTests>
 					<coverage>
-						<runCoverage>false</runCoverage>
+						<runCoverage>true</runCoverage>
 						<formats>
 							<format>html</format>
 						</formats>
