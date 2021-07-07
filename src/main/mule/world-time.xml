@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="0c9be865-afa3-4a86-905d-e556dc057846" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="6b3d00c1-8abc-4ccd-a02a-3bc55817af80" basePath="/api/timezone" >
+		<http:request-connection host="worldtimeapi.org" />
+	</http:request-config>
+	<flow name="world-timeFlow" doc:id="d764f7ea-5de9-4185-901f-4af11a29dede" >
+		<http:listener doc:name="Listener" doc:id="b8661488-9295-4b65-8572-ebc818bc86c3" config-ref="HTTP_Listener_config" path="/{region}/{city}"/>
+		<logger level="INFO" doc:name="Logger" doc:id="e358c66f-c8d0-4922-9e14-51e96e231e23" />
+		<http:request method="GET" doc:name="Request" doc:id="d3477efc-b755-43de-a03a-07492ded790c" config-ref="HTTP_Request_configuration" path="/{region}/{city}">
+			<http:uri-params ><![CDATA[#[output application/java
+---
+{
+	city : attributes.uriParams.city,
+	region : attributes.uriParams.region
+}]]]></http:uri-params>
+		</http:request>
+		<logger level="INFO" doc:name="Logger" doc:id="437e2b6a-9072-414a-9a16-26701144705d" message="#[payload]"/>
+		<error-handler >
+			<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="37234684-7b19-488a-8544-a5eb6f86151e" type="ANY">
+				<logger level="INFO" doc:name="Logger" doc:id="7f73b8b3-704d-4279-b5f6-4b47e18354f2" message="#[error.description]"/>
+			</on-error-continue>
+		</error-handler>
+	</flow>
+</mule>
