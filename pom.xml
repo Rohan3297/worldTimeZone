@@ -33,13 +33,13 @@
 				<configuration>
 					<cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com</uri>
-						<username>rohan97</username>
-						<environment>Sandbox</environment>
-						<workers>1</workers>
-						<workerType>Micro</workerType>
+						<username>${username}</username>
+						<environment>${environment}</environment>
+						<workers>${workers}</workers>
+						<workerType>${worker.type}</workerType>
 						<applicationName>Time-Zone-app</applicationName>
-						<password>19ikEBRo</password>
-						<muleVersion>4.3.0</muleVersion>
+						<password>${password}</password>
+						<muleVersion>${mule.version}</muleVersion>
 						<objectStoreV2>true</objectStoreV2>
 					</cloudHubDeployment>
 				</configuration>
